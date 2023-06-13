@@ -5,7 +5,7 @@ import 'components/components.dart';
 import 'providers.dart';
 
 void main() {
-  runApp(ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,23 +28,10 @@ class Base extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final List<List<String>> bookList = ref.watch(bookListProvider);
     final int navIndex = ref.watch(navIndexProvider);
 
     const List<Widget> pages = <Widget>[
-      Home(),
-      Icon(
-        Icons.electric_bolt,
-        size: 150,
-      ),
-      Icon(
-        Icons.timeline_outlined,
-        size: 150,
-      ),
-      Icon(
-        Icons.people_alt_rounded,
-        size: 150,
-      ),
+      Home(),Swift(),Quiz(),Community()
     ];
 
     return Scaffold(
@@ -67,7 +54,7 @@ class Base extends ConsumerWidget {
         title: const Text('ReadLog'),
       ),
       body: pages.elementAt(navIndex),
-      floatingActionButton: (navIndex==0)?BookAddButton():null,
+      floatingActionButton: (navIndex==0)?const BookAddButton():null,
     );
   }
 }
