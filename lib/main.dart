@@ -10,7 +10,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,22 +28,21 @@ class Base extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int navIndex = ref.watch(navIndexProvider);
+    final int navIndex = ref.watch(mainNavIndexProvider);
 
-    const List<Widget> pages = <Widget>[
-      Home(),Swift(),Quiz(),Community()
-    ];
+    const List<Widget> pages = <Widget>[Home(), Swift(), Quiz(), Community()];
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: navIndex,
-        onTap: (index){
-          ref.read(navIndexProvider.notifier).state = index;
+        onTap: (index) {
+          ref.read(mainNavIndexProvider.notifier).state = index;
         },
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home)),
-          BottomNavigationBarItem(label: 'Swift', icon: Icon(Icons.electric_bolt)),
+          BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home_filled)),
+          BottomNavigationBarItem(
+              label: 'Swift', icon: Icon(Icons.electric_bolt)),
           BottomNavigationBarItem(
               label: 'Quiz', icon: Icon(Icons.timeline_outlined)),
           BottomNavigationBarItem(
@@ -54,7 +53,7 @@ class Base extends ConsumerWidget {
         title: const Text('ReadLog'),
       ),
       body: pages.elementAt(navIndex),
-      floatingActionButton: (navIndex==0)?const BookAddButton():null,
+      floatingActionButton: (navIndex == 0) ? const BookAddButton() : null,
     );
   }
 }

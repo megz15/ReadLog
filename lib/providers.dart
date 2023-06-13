@@ -6,4 +6,5 @@ final bookListProvider = StateProvider((_) => <List<String>>[
   ['Foundation and Earth', 'Isaac Asimov']]
 );
 
-final navIndexProvider = StateProvider((_) => 0);
+final mainNavIndexProvider = StateProvider((_) => 0);
+final bookNavIndexProvider = StateProvider((_) => 0);
