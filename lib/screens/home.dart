@@ -29,17 +29,66 @@ class Home extends ConsumerWidget {
             leading: const Icon(Icons.book),
             title: Text(bookList[index][0]),
             subtitle: Text(bookList[index][1]),
-            trailing: const Icon(Icons.more_vert),
+            trailing: IconButton(
+                onPressed: () {
+                  ref.read(bookListProvider.notifier).state = bookList
+                      .where((x) => bookList.indexOf(x) != index)
+                      .toList();
+                },
+                icon: const Icon(Icons.delete)),
             onTap: () {},
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(bookListProvider.notifier).state = [
-            ...bookList,
-            ['New Book', 'New Author']
-          ];
+
+          final TextEditingController titleController = TextEditingController();
+          final TextEditingController authorController = TextEditingController();
+          
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Add Book'),
+                  content: Wrap(
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Book Title',
+                        ),
+                      ),
+                      TextField(
+                        controller: authorController,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Author',
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        ref.read(bookListProvider.notifier).state = [
+                          ...bookList,
+                          [titleController.text, authorController.text]
+                        ];
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Add'),
+                    ),
+                  ],
+                );
+              });
         },
         tooltip: 'Add Book',
         child: const Icon(Icons.add),
