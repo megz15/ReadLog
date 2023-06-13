@@ -8,6 +8,8 @@ final bookListProvider = StateProvider((_) => <List<String>>[
   ['Foundation and Earth', 'Isaac Asimov']]
 );
 
+final navIndexProvider = StateProvider((_) => 0);
+
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }
