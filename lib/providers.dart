@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final bookListProvider = StateProvider((_) => <List<String>>[
-      ['Elementary Linear Algebra', 'Andrilli, Hecker'],
-      ['Practical Malware Analysis', 'Michael Sikorski'],
-      ['Foundation and Earth', 'Isaac Asimov']
-    ]);
+final bookListProvider = StateProvider((_) => <String, String>{
+      'Elementary Linear Algebra': 'Andrilli, Hecker',
+      'Practical Malware Analysis': 'Michael Sikorski',
+      'Foundation and Earth': 'Isaac Asimov'
+    });
 
 // final sectionListProvider =
 //     StateProvider((_) => <String>['Chapter 1', 'Chapter 2', 'Chapter 3']);

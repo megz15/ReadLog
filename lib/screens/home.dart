@@ -8,26 +8,28 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<List<String>> bookList = ref.watch(bookListProvider);
+    final Map<String, String> bookList = ref.watch(bookListProvider);
 
     return ListView.builder(
       itemCount: bookList.length,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
           leading: const Icon(Icons.book),
-          title: Text(bookList[index][0]),
-          subtitle: Text(bookList[index][1]),
+          title: Text(bookList.keys.elementAt(index)),
+          subtitle: Text(bookList.values.elementAt(index)),
           trailing: IconButton(
               onPressed: () {
-                ref.read(bookListProvider.notifier).state = bookList
-                    .where((x) => bookList.indexOf(x) != index)
-                    .toList();
+                // ref.read(bookListProvider.notifier).state = bookList
+                //     .where((x) => bookList.indexOf(x) != index)
+                //     .toList();
+                bookList.removeWhere((key, value) => key == bookList.keys.elementAt(index));
+                ref.read(bookListProvider.notifier).state = bookList;
               },
               icon: const Icon(Icons.delete)),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) =>
-                    Book(bookTitle: bookList[index][0])));
+                    Book(bookTitle: bookList.keys.elementAt(index))));
           },
         );
       },
