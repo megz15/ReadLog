@@ -6,8 +6,8 @@ final bookListProvider = StateProvider((_) => <List<String>>[
       ['Foundation and Earth', 'Isaac Asimov']
     ]);
 
-final sectionListProvider =
-    StateProvider((_) => <String>['Chapter 1', 'Chapter 2', 'Chapter 3']);
+// final sectionListProvider =
+//     StateProvider((_) => <String>['Chapter 1', 'Chapter 2', 'Chapter 3']);
 
 final wordListProvider = StateProvider((_) =>
     <String>['Sibilant', 'Virility', 'Alacrity', 'Inveigled', 'Apocryphal']);

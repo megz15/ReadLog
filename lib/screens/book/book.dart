@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:megz_readlog/providers.dart';
-import 'book_export.dart';
-import 'package:megz_readlog/components/components.dart';
+import 'book_info.dart';import 'book_words.dart';
+import 'package:megz_readlog/components/word_add_button.dart';
 
 class Book extends ConsumerWidget {
   final String bookTitle;
@@ -13,11 +13,7 @@ class Book extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final int navIndex = ref.watch(bookNavIndexProvider);
 
-    const List<Widget> pages = <Widget>[
-      BookInfo(),
-      BookSections(),
-      BookGeneral(),
-    ];
+    const List<Widget> pages = <Widget>[BookInfo(),BookGeneral()];
 
     return Scaffold(
       appBar: AppBar(
@@ -32,13 +28,11 @@ class Book extends ConsumerWidget {
           BottomNavigationBarItem(
               label: 'Info', icon: Icon(Icons.info_outline)),
           BottomNavigationBarItem(
-              label: 'Sections', icon: Icon(Icons.library_books_outlined)),
-          BottomNavigationBarItem(
-              label: 'General', icon: Icon(Icons.question_mark)),
+              label: 'Words', icon: Icon(Icons.question_mark)),
         ],
       ),
       body: pages.elementAt(navIndex),
-      floatingActionButton: (navIndex == 1) ? const SectionAddButton() : (navIndex == 2) ? const WordAddButton() : null,
+      floatingActionButton: (navIndex==1) ? const WordAddButton() : null,
     );
   }
 }
