@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:megz_readlog/providers.dart';
 
+import '../meaning.dart';
+
 class BookGeneral extends ConsumerWidget {
 
   final String bookTitle;
@@ -19,6 +21,11 @@ class BookGeneral extends ConsumerWidget {
           return ListTile(
             leading: const Icon(Icons.book),
             title: Text(words[index]),
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) =>
+                  Meaning(word: words[index])));
+            },
             trailing: IconButton(
               onPressed: () {
 
