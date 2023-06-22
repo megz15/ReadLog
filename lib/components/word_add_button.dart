@@ -3,17 +3,27 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:megz_readlog/providers.dart';
 
 class WordAddButton extends ConsumerWidget {
-  const WordAddButton({super.key});
+
+  final String bookTitle;
+
+  const WordAddButton({super.key, required this.bookTitle});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<String> bookList = ref.watch(wordListProvider);
+    final bookList = ref.watch(bookListProvider);
     return FloatingActionButton(
         onPressed: () {
-          ref.read(wordListProvider.notifier).state = [
+          print(bookList);
+          // bookList[bookTitle] = [bookList[bookTitle]![0], bookList[bookTitle]![1]];
+          bookList[bookTitle]!['words'];
+          // ref.read(bookListProvider.notifier).state = bookList;
+          ref.read(bookListProvider.notifier).state = {
             ...bookList,
-            "word"
-          ];
+            bookTitle: {
+              'author': bookList[bookTitle]!['author']!,
+              'words': ['sex']
+            }
+          };
         },
         tooltip: 'Add Book',
         child: const Icon(Icons.add),

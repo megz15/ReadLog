@@ -13,7 +13,7 @@ class Book extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final int navIndex = ref.watch(bookNavIndexProvider);
 
-    const List<Widget> pages = <Widget>[BookInfo(),BookGeneral()];
+    List<Widget> pages = <Widget>[const BookInfo(),BookGeneral(bookTitle: bookTitle)];
 
     return Scaffold(
       appBar: AppBar(
@@ -32,7 +32,7 @@ class Book extends ConsumerWidget {
         ],
       ),
       body: pages.elementAt(navIndex),
-      floatingActionButton: (navIndex==1) ? const WordAddButton() : null,
+      floatingActionButton: (navIndex==1) ? WordAddButton(bookTitle: bookTitle) : null,
     );
   }
 }

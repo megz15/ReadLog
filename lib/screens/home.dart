@@ -8,7 +8,7 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Map<String, String> bookList = ref.watch(bookListProvider);
+    final bookList = ref.watch(bookListProvider);
 
     return ListView.builder(
       itemCount: bookList.length,
@@ -16,14 +16,12 @@ class Home extends ConsumerWidget {
         return ListTile(
           leading: const Icon(Icons.book),
           title: Text(bookList.keys.elementAt(index)),
-          subtitle: Text(bookList.values.elementAt(index)),
+          subtitle: Text(bookList.values.elementAt(index)['author'].toString()),
           trailing: IconButton(
               onPressed: () {
-                // ref.read(bookListProvider.notifier).state = bookList
-                //     .where((x) => bookList.indexOf(x) != index)
-                //     .toList();
-                bookList.removeWhere((key, value) => key == bookList.keys.elementAt(index));
-                ref.read(bookListProvider.notifier).state = bookList;
+                ref.read(bookListProvider.notifier).state = Map.from(bookList)..remove(bookList.keys.elementAt(index));
+                // bookList.removeWhere((key, value) => key == bookList.keys.elementAt(index));
+                // bookList.remove(bookList.keys.elementAt(index));
               },
               icon: const Icon(Icons.delete)),
           onTap: () {
