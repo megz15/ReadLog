@@ -21,11 +21,6 @@ class BookGeneral extends ConsumerWidget {
             title: Text(words[index]),
             trailing: IconButton(
               onPressed: () {
-                // ref.read(wordListProvider.notifier).state = wordList
-                //     .where((x) => wordList.indexOf(x) != index)
-                //     .toList();
-                // bookList[bookTitle]!.removeAt(index);
-                // wordList.removeWhere((key, value) => key == wordList.keys.elementAt(index));
 
                 words.removeAt(index);
                 bookList[bookTitle]!['words'] = words;

@@ -51,14 +51,18 @@ class BookAddButton extends ConsumerWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        ref.read(bookListProvider.notifier).state = {
-                          ...bookList,
-                          titleController.text: {
-                            'author': authorController.text,
-                            'words': <String>[]
-                          }
-                        };
-                        Navigator.of(context).pop();
+                        if (titleController.text.isNotEmpty) {
+                          ref.read(bookListProvider.notifier).state = {
+                            ...bookList,
+                            titleController.text: {
+                              'author': authorController.text,
+                              'words': <String>[]
+                            }
+                          };
+                          Navigator.of(context).pop();
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('You need to add a title!')));
+                        }
                       },
                       child: const Text('Add'),
                     ),
