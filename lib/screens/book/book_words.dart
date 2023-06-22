@@ -30,7 +30,7 @@ class BookGeneral extends ConsumerWidget {
                 words.removeAt(index);
                 bookList[bookTitle]!['words'] = words;
 
-                ref.read(bookListProvider.notifier).state = bookList;
+                ref.read(bookListProvider.notifier).state = Map.from(bookList);
               },
               icon: const Icon(Icons.delete),
             ),
