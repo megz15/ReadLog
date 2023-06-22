@@ -13,7 +13,7 @@ class BookGeneral extends ConsumerWidget {
     final bookList = ref.watch(bookListProvider);
     List<String> words = bookList[bookTitle]!['words'] as List<String>;
 
-    return ListView.builder(
+    return (words.isNotEmpty)?ListView.builder(
         itemCount: words.length,
         itemBuilder: (context, index) {
           return ListTile(
@@ -35,6 +35,6 @@ class BookGeneral extends ConsumerWidget {
               icon: const Icon(Icons.delete),
             ),
           );
-        });
+        }):const Text('Add new words!');
   }
 }

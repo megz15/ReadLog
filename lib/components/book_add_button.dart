@@ -55,7 +55,7 @@ class BookAddButton extends ConsumerWidget {
                           ...bookList,
                           titleController.text: {
                             'author': authorController.text,
-                            'words': []
+                            'words': <String>[]
                           }
                         };
                         Navigator.of(context).pop();
