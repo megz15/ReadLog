@@ -24,7 +24,7 @@ class BookGeneral extends ConsumerWidget {
             onTap: (){
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) =>
-                  Meaning(word: words[index])));
+                  Meaning(bookTitle: bookTitle, wordIndex: index)));
             },
             trailing: IconButton(
               onPressed: () {

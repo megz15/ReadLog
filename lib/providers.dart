@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'models/meaning_data.dart';
+
 final bookListProvider = StateProvider((_) => {
   'Elementary Linear Algebra': {
     'author': 'Andrilli & Hecker',
@@ -7,7 +9,7 @@ final bookListProvider = StateProvider((_) => {
   },
   'Practical Malware Analysis': {
     'author': 'Michael Sikorski',
-    'words': ['Word 4', 'Word 5', 'Word 6']
+    'words': ['Word 4', 'Word 5', 'Word 6', 'test']
   },
   'Foundation and Earth': {
     'author': 'Isaac Asimov',
@@ -15,16 +17,7 @@ final bookListProvider = StateProvider((_) => {
   },
 });
 
-// final sectionListProvider =
-//     StateProvider((_) => <String>['Chapter 1', 'Chapter 2', 'Chapter 3']);
-
-// final wordListProvider = StateProvider((ref){
-//   final bookList = ref.watch(bookListProvider);
-//   final Map<String, List<String>> wordList = {};
-
-//   bookList.forEach((key, value) {wordList[key] = ['Sibilant', 'Virility', 'Alacrity', 'Inveigled', 'Apocryphal'];});
-//   return wordList;
-// });
+final currentMeaningProvider = StateProvider((_) => MeaningData(meanings: [{'m1':'m2'}], phonetics: [{'p1':'p2'}]));
 
 final mainNavIndexProvider = StateProvider((_) => 0);
 final bookNavIndexProvider = StateProvider((_) => 0);
