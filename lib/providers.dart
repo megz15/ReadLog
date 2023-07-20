@@ -17,7 +17,7 @@ final bookListProvider = StateProvider((_) => {
   },
 });
 
-final currentMeaningProvider = StateProvider((_) => MeaningData(meanings: [{'m1':'m2'}], phonetics: [{'p1':'p2'}]));
+final currentMeaningProvider = StateProvider((_) => <MeaningData>[]);
 
 final mainNavIndexProvider = StateProvider((_) => 0);
 final bookNavIndexProvider = StateProvider((_) => 0);

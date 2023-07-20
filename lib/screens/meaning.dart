@@ -19,12 +19,22 @@ class Meaning extends ConsumerWidget {
 
     List<String> words = bookList[bookTitle]!['words'] as List<String>;
     rootBundle.loadString('lib/api/mock.json').then((value){
-      // ref.read(currentMeaningProvider.notifier).state = MeaningData.fromJSON(json.decode(value)[0]);
-      ref.read(currentMeaningProvider.notifier).state = MeaningData.fromJSON(json.decode(value)[0]);
+      List<dynamic> jsonData = json.decode(value);
+      ref.read(currentMeaningProvider.notifier).state = jsonData.map((e) => MeaningData.fromJSON(e)).toList();
     });
 
     return Scaffold(
       appBar: AppBar(title: Text(words[wordIndex])),
-      body: Text(currentMeaning.meanings.toString()),
+      body: ListView.builder(
+        itemCount: currentMeaning.length,
+        itemBuilder: (ctx, i) => ExpansionTile(
+          title: Text("Interpretation ${i+1}"),
+          leading: const Icon(Icons.star_rounded),
+          children: [
+            ListTile(title: Text(currentMeaning[i].meanings.toString())),
+            ListTile(title: Text(currentMeaning[i].phonetics.toString())),
+          ],
+        )
+      ),
     );}
 }
