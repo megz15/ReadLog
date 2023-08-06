@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:megz_readlog/providers.dart';
+import 'package:readlog/providers.dart';
 import 'book/book.dart';
 
-class Home extends ConsumerWidget {
-  const Home({super.key});
+class Categories extends ConsumerWidget {
+  const Categories({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

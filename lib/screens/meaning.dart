@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:megz_readlog/providers.dart';
+import 'package:readlog/providers.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 

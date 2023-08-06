@@ -1,4 +1,4 @@
-package megz.readlog.megz_readlog
+package megz.readlog
 
 import io.flutter.embedding.android.FlutterActivity
 

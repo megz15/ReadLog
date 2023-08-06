@@ -30,7 +30,7 @@ class Base extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final int navIndex = ref.watch(mainNavIndexProvider);
 
-    const List<Widget> pages = <Widget>[Home(), Swift(), Quiz(), Community()];
+    const List<Widget> pages = <Widget>[General(), Categories(), Quiz(), Community()];
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
@@ -40,9 +40,10 @@ class Base extends ConsumerWidget {
           ref.read(mainNavIndexProvider.notifier).state = index;
         },
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(label: 'Home', icon: Icon(Icons.home_filled)),
-          BottomNavigationBarItem(
-              label: 'Swift', icon: Icon(Icons.electric_bolt)),
+          BottomNavigationBarItem(label: 'General', icon: Icon(Icons.home_rounded)),
+          BottomNavigationBarItem(label: 'Categories', icon: Icon(Icons.category_rounded)),
+          // BottomNavigationBarItem(
+          //     label: 'Swift', icon: Icon(Icons.electric_bolt)),
           BottomNavigationBarItem(
               label: 'Quiz', icon: Icon(Icons.timeline_outlined)),
           BottomNavigationBarItem(
@@ -53,7 +54,7 @@ class Base extends ConsumerWidget {
         title: const Text('ReadLog'),
       ),
       body: pages.elementAt(navIndex),
-      floatingActionButton: (navIndex == 0) ? const BookAddButton() : null,
+      floatingActionButton: (navIndex < 2) ? const BookAddButton() : null,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:megz_readlog/providers.dart';
+import 'package:readlog/providers.dart';
 
 class BookAddButton extends ConsumerWidget {
   const BookAddButton({super.key});
@@ -24,7 +24,8 @@ class BookAddButton extends ConsumerWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: const Text('Add Book'),
-                  content: Wrap(
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       TextField(
                         controller: titleController,
@@ -33,6 +34,7 @@ class BookAddButton extends ConsumerWidget {
                           labelText: 'Book Title',
                         ),
                       ),
+                      const SizedBox(height: 20),
                       TextField(
                         controller: authorController,
                         decoration: const InputDecoration(

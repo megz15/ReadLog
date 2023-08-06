@@ -1,4 +1,4 @@
-# megz_readlog
+# readlog
 
 Your reading companion.
 

@@ -1,4 +1,4 @@
-export 'home.dart';
-export 'swift_lookup.dart';
+export 'general.dart';
+export 'categories.dart';
 export 'quiz.dart';
 export 'community.dart';
