@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:readlog/screens/base.dart';
+import 'package:provider/provider.dart';
+import 'package:readlog/base.dart';
+import 'package:readlog/words_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,13 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("ReadLog", style: TextStyle(color: Colors.white)),
-          backgroundColor: Colors.blueGrey[900],
-        ),
-        body: const Base(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => WordsProvider(),
+      child: MaterialApp(
+        home: Base(),
       ),
     );
   }
