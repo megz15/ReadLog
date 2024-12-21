@@ -47,8 +47,15 @@ class Base extends StatelessWidget {
                           } else if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           } else {
-                            final meaning = snapshot.data.toString();
-                            return Text(meaning);
+                            final List<dynamic> definitions = snapshot.data;
+                            String partOfSpeech =
+                                definitions[0]['meanings'][0]['partOfSpeech'];
+                            String definition = definitions[0]['meanings'][0]
+                                ['definitions'][0]['definition'];
+                            return Text(
+                              '$partOfSpeech: $definition',
+                              style: TextStyle(fontSize: 16),
+                            );
                           }
                         }),
                     actions: <Widget>[
