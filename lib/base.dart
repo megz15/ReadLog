@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:readlog/api/get_word_meaning.dart';
 import 'package:readlog/words_provider.dart';
 
 class Base extends StatelessWidget {
@@ -24,6 +25,44 @@ class Base extends StatelessWidget {
                 context.read<WordsProvider>().removeWord(words[index]);
               },
             ),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(words[index]),
+                    content: FutureBuilder(
+                        future: fetchMeaning(words[index]),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CircularProgressIndicator(),
+                                Text("     Getting word meaning..."),
+                              ],
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text(snapshot.error.toString());
+                          } else {
+                            final meaning = snapshot.data.toString();
+                            return Text(meaning);
+                          }
+                        }),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text('Close'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         },
       ),
